@@ -1,0 +1,53 @@
+package up.mi.projet;
+
+public class TestGraphe{
+    public static void main(String[] args){
+        try{
+            Graphe g = new Graphe(10);
+            for(int i = 0; i < 10; i++){
+                g.ajouterSommet(new Sommet(i));
+            }
+            g.ajouterArrete(0, 1);
+            g.ajouterArrete(0, 2);
+            g.ajouterArrete(0, 5);
+
+            g.ajouterArrete(1, 3);
+            g.ajouterArrete(1, 7);
+
+            g.ajouterArrete(2, 4);
+            g.ajouterArrete(2, 8);
+
+            g.ajouterArrete(3, 4);
+            g.ajouterArrete(3, 9);
+
+            g.ajouterArrete(4, 6);
+
+            g.ajouterArrete(5, 6);
+            g.ajouterArrete(5, 9);
+
+            g.ajouterArrete(6, 7);
+
+            g.ajouterArrete(7, 8);
+
+            g.ajouterArrete(8, 9);
+
+            Etiquetage correct = new Etiquetage(10);
+
+            correct.setCouleur(0, Couleur.ROUGE);
+            correct.setCouleur(1, Couleur.VERT);
+            correct.setCouleur(2, Couleur.VERT);
+            correct.setCouleur(3, Couleur.ROUGE);
+            correct.setCouleur(4, Couleur.BLEU);
+            correct.setCouleur(5, Couleur.VERT);
+            correct.setCouleur(6, Couleur.ROUGE);
+            correct.setCouleur(7, Couleur.BLEU);
+            correct.setCouleur(8, Couleur.ROUGE);
+            correct.setCouleur(9, Couleur.BLEU);
+
+            System.out.println("Coloration propre ? " + AlgorithmeUtilitaires.estCol(g, correct));
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+}
