@@ -44,8 +44,28 @@ public class TestGraphe{
             correct.setCouleur(8, Couleur.ROUGE);
             correct.setCouleur(9, Couleur.BLEU);
 
-            System.out.println("Coloration propre ? " + AlgorithmeUtilitaires.estCol(g, correct));
-        }catch (Exception e){
+            //System.out.println("Coloration propre ? " + AlgorithmesUtilitaires.estCol(g, correct));
+            Graphe g2 = new Graphe(6);
+            g2.ajouterSommet(new Sommet(0));
+            g2.ajouterSommet(new Sommet(1));
+            g2.ajouterSommet(new Sommet(2));
+            g2.ajouterSommet(new Sommet(3));
+            g2.ajouterSommet(new Sommet(4));
+            g2.ajouterSommet(new Sommet(5));
+            
+            g2.ajouterArrete(0, 3);
+            g2.ajouterArrete(0, 4);
+            g2.ajouterArrete(0, 5);
+            g2.ajouterArrete(1,3);
+            g2.ajouterArrete(1,4);
+            g2.ajouterArrete(1,5);
+            g2.ajouterArrete(2, 3);
+            g2.ajouterArrete(2, 4);
+            g2.ajouterArrete(2, 5);
+
+            Etiquetage e = AlgorithmesUtilitaires.deuxCol(g2);
+            e.afficher();
+        }catch (NonBipartiException | TailleInsuffisanteException e){
             System.out.println(e.getMessage());
         }
 

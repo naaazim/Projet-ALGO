@@ -1,13 +1,9 @@
 package up.mi.projet;
-
 public class Sommet {
     private int valeur;
     public Sommet(int valeur) {
         this.valeur = valeur;
-
     }
-
-
     public int getValeur() {
         return valeur;
     }
