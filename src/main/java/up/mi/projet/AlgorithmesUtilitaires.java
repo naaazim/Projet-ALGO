@@ -68,4 +68,29 @@ public class AlgorithmesUtilitaires {
         return true;
     }
 
+    public static int minCouleurPossible(Graphe g, Etiquetage e, int s) {
+        int n = g.getCompteur();
+
+        // Tableau pour marquer les couleurs déjà interdites
+        boolean[] interdit = new boolean[n];
+
+        // Parcours des voisins : coût O(n) avec une matrice d'adjacence
+        for (Sommet v : g.getVoisins(s)) {
+            Couleur c = e.getCouleur(v.getValeur());
+            if (c != Couleur.AUCUNE) {
+                interdit[c.ordinal()] = true;
+            }
+        }
+
+        // Recherche de la plus petite couleur non interdite
+        for (int couleur = 0; couleur < n; couleur++) {
+            if (!interdit[couleur]) {
+                return couleur;
+            }
+        }
+
+        // Ne devrait jamais arriver avec n couleurs
+        return n;
+    }
+
 }

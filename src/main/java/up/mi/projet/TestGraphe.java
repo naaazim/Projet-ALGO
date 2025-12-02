@@ -7,29 +7,28 @@ public class TestGraphe{
             for(int i = 0; i < 10; i++){
                 g.ajouterSommet(new Sommet(i));
             }
-            g.ajouterArrete(0, 1);
-            g.ajouterArrete(0, 2);
+            g.ajouterArrete(0, 6);
+            g.ajouterArrete(0, 4);
             g.ajouterArrete(0, 5);
 
-            g.ajouterArrete(1, 3);
+            g.ajouterArrete(1, 6);
             g.ajouterArrete(1, 7);
+            g.ajouterArrete(1, 8);
 
-            g.ajouterArrete(2, 4);
+            g.ajouterArrete(2, 5);
             g.ajouterArrete(2, 8);
+            g.ajouterArrete(2, 9);
 
             g.ajouterArrete(3, 4);
+            g.ajouterArrete(3, 7);
             g.ajouterArrete(3, 9);
 
-            g.ajouterArrete(4, 6);
+            g.ajouterArrete(4, 8);
 
-            g.ajouterArrete(5, 6);
-            g.ajouterArrete(5, 9);
+            g.ajouterArrete(5, 7);
 
-            g.ajouterArrete(6, 7);
+            g.ajouterArrete(6, 9);
 
-            g.ajouterArrete(7, 8);
-
-            g.ajouterArrete(8, 9);
 
             Etiquetage correct = new Etiquetage(10);
 
