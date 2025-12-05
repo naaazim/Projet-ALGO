@@ -62,7 +62,17 @@ public class TestGraphe{
             g2.ajouterArrete(2, 4);
             g2.ajouterArrete(2, 5);
 
+
             Etiquetage e = AlgorithmesUtilitaires.deuxCol(g2);
+            //e.afficher();
+            int[] num1 = {1,3,4,0,2,6,5,9,8,7};
+            e = AlgorithmesUtilitaires.glouton(g, num1);
+            //e.afficher();
+            int []tab = AlgorithmesUtilitaires.triDegre(g);
+            for(int i = 0; i < tab.length; i++){
+                //System.out.println("sommet "+i+" :"+ g.getDegre(i));;
+            }
+            e = AlgorithmesUtilitaires.welshPowell(g);
             e.afficher();
         }catch (NonBipartiException | TailleInsuffisanteException e){
             System.out.println(e.getMessage());
