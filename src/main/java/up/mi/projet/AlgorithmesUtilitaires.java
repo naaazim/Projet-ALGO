@@ -1,7 +1,9 @@
 package up.mi.projet;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 public class AlgorithmesUtilitaires {
 
@@ -140,4 +142,56 @@ public class AlgorithmesUtilitaires {
     public static Etiquetage welshPowell(Graphe g) {
         return glouton(g, triDegre(g));
     }
+    public static Graphe sousGraphe(Graphe g, int[] sg) throws TailleInsuffisanteException {
+        int k = sg.length;               // taille du sous-graphe
+        Graphe sous = new Graphe(k);     // nouveau graphe de k sommets
+
+        // Ajout des sommets 0..k-1
+        for (int i = 0; i < k; i++) {
+            sous.ajouterSommet(new Sommet(i));
+        }
+
+        // Création des arêtes du sous-graphe
+        for (int i = 0; i < k; i++) {
+            for (int j = i + 1; j < k; j++) {
+                int u = sg[i];
+                int v = sg[j];
+
+                if (g.estAdjacent(u, v)) {
+                    sous.ajouterArrete(i, j);
+                }
+            }
+        }
+
+        return sous;
+    }
+    public static int[] voisinsNonColories(Graphe g, Etiquetage e, int s) {
+        List<Integer> liste = new ArrayList<>();
+
+        for (Sommet v : g.getVoisins(s)) {
+            if (e.getCouleur(v.getValeur()) == Couleur.AUCUNE) {
+                liste.add(v.getValeur());
+            }
+        }
+
+        // conversion List<Integer> -> int[]
+        int[] res = new int[liste.size()];
+        for (int i = 0; i < liste.size(); i++) {
+            res[i] = liste.get(i);
+        }
+        return res;
+    }
+    public static int degreNonColories(Graphe g, Etiquetage e, int s) {
+        int count = 0;
+
+        for (Sommet v : g.getVoisins(s)) {
+            if (e.getCouleur(v.getValeur()) == Couleur.AUCUNE) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+
 }
