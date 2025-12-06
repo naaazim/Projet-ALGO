@@ -1,13 +1,27 @@
 package up.mi.projet;
 
-public class TestGraphe{
-    public static void main(String[] args){
-        try{
+/**
+ * Classe de test pour les fonctionnalités de la classe {@link Graphe} et les algorithmes de coloration
+ * de la classe {@link AlgorithmesUtilitaires}.
+ * Cette classe contient des exemples d'utilisation et des scénarios de test pour
+ * valider l'implémentation des différents algorithmes.
+ */
+public class TestGraphe {
+
+    /**
+     * Point d'entrée principal pour l'exécution des tests.
+     * Crée des graphes, applique des algorithmes de coloration (2-coloriage, glouton,
+     * Welsh-Powell, Wigderson) et affiche les résultats.
+     *
+     * @param args Les arguments de la ligne de commande (non utilisés).
+     */
+    public static void main(String[] args) {
+        try {
             // =======================
             // 1) GRAPHE DE PETERSEN
             // =======================
             Graphe g = new Graphe(10);
-            for(int i = 0; i < 10; i++){
+            for (int i = 0; i < 10; i++) {
                 g.ajouterSommet(new Sommet(i));
             }
 
@@ -40,7 +54,7 @@ public class TestGraphe{
             // =======================
             System.out.println("=== Test coloration 2-colorable (g2) ===");
             Graphe g2 = new Graphe(6);
-            for (int i = 0; i < 6; i++){
+            for (int i = 0; i < 6; i++) {
                 g2.ajouterSommet(new Sommet(i));
             }
 
@@ -63,7 +77,7 @@ public class TestGraphe{
             // 3) TEST GLOUTON AVEC ORDRE num1
             // =======================
             System.out.println("\n=== Test glouton sur le graphe de Petersen ===");
-            int[] num1 = {1,3,4,0,2,6,5,9,8,7};
+            int[] num1 = {1, 3, 4, 0, 2, 6, 5, 9, 8, 7};
             Etiquetage colGlouton = AlgorithmesUtilitaires.glouton(g, num1);
             colGlouton.afficher();
 
@@ -80,8 +94,8 @@ public class TestGraphe{
             // 5) TEST triDegre
             // =======================
             System.out.println("\n=== Tri par degrés (Petersen = 3-régulier) ===");
-            int []tabDeg = AlgorithmesUtilitaires.triDegre(g);
-            for(int i = 0; i < tabDeg.length; i++){
+            int[] tabDeg = AlgorithmesUtilitaires.triDegre(g);
+            for (int i = 0; i < tabDeg.length; i++) {
                 System.out.println("Sommet " + tabDeg[i] + " : degré = " + g.getDegre(tabDeg[i]));
             }
 
@@ -118,8 +132,27 @@ public class TestGraphe{
             System.out.println("Degré non colorié du sommet 0 = " + degNC);
 
 
+            // =======================
+            // 8) TEST nonColories
+            // =======================
+            System.out.println("\n=== Test nonColories ===");
 
-        } catch (Exception e){
+            // On réutilise etiqTest du test précédent
+            int[] nonCol = AlgorithmesUtilitaires.nonColories(etiqTest);
+
+            System.out.println("Sommets non coloriés :");
+            for (int s : nonCol) {
+                System.out.println(" - " + s);
+            }
+            // =======================
+            // 9) TEST Wigderson
+            // =======================
+            System.out.println("\n=== Test Wigderson ===");
+            Etiquetage colW = AlgorithmesUtilitaires.wigderson(g);
+            colW.afficher();
+
+
+        } catch (Exception e) {
             System.out.println("Erreur : " + e.getMessage());
         }
 
