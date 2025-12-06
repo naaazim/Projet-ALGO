@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="up.mi.projet.gui.MainController">
+    <top>
+        <MenuBar>
+            <menus>
+                <Menu text="Fichier">
+                    <items>
+                        <MenuItem text="Nouveau Graphe" onAction="#gererNouveauGraphe" />
+                        <MenuItem text="Quitter" onAction="#gererQuitter" />
+                    </items>
+                </Menu>
+                <Menu text="Aide">
+                    <items>
+                        <MenuItem text="À propos" onAction="#gererAPropos" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <ScrollPane>
+            <Canvas fx:id="canevas" width="600" height="580" />
+        </ScrollPane>
+    </center>
+    <right>
+        <VBox spacing="10" alignment="TOP_CENTER" style="-fx-padding: 10;">
+            <Label text="Contrôles du Graphe" style="-fx-font-weight: bold;" />
+            <VBox spacing="5">
+                <Label text="Ajouter un Sommet" />
+                <Button text="Ajouter" onAction="#gererAjouterSommet" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Ajouter une Arête" />
+                <HBox spacing="5">
+                    <Spinner fx:id="deSpinner" min="0" max="0" initialValue="0" editable="true" prefWidth="70"/>
+                    <Spinner fx:id="aSpinner" min="0" max="0" initialValue="0" editable="true" prefWidth="70"/>
+                </HBox>
+                <Button text="Ajouter" onAction="#gererAjouterArete" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Algorithmes de Coloration" />
+                <ComboBox fx:id="algorithmeComboBox" prefWidth="150" />
+                <Button text="Exécuter" onAction="#gererExecuterAlgorithme" />
+            </VBox>
+            <VBox spacing="5">
+                <Label text="Actions" />
+                <Button text="Effacer les couleurs" onAction="#gererEffacer" />
+            </VBox>
+        </VBox>
+    </right>
+</BorderPane>
