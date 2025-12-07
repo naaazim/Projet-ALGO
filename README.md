@@ -1,144 +1,78 @@
-# 🎨 Projet de Coloration des Graphes
+# 🎨 Coloration de Graphes — JavaFX
 
-## 📚 Module
-**Programmation Avancée & Applications (PAA)**
+Application pédagogique pour créer, visualiser et colorer des graphes via une interface JavaFX soignée (FXML + CSS), sans mélanger logique métier et UI.
 
-## 👤 Auteur
-Abderahmane Nazim HAMIA  
-(L3 Informatique)
-
----
-
-## 🧠 Description du projet
-
-Ce projet est une application **JavaFX** permettant de **créer, visualiser et colorer des graphes** à l'aide de plusieurs **algorithmes de coloration classiques**.
-
-L'application fournit une **interface graphique interactive** où l'utilisateur peut :
-- Ajouter des sommets
-- Ajouter des arêtes
-- Visualiser le graphe
-- Appliquer différents algorithmes de coloration
-- Observer le résultat graphiquement
-
-Le projet met l'accent sur :
-- la **programmation orientée objet**
-- la **séparation logique UI / métier**
-- l'utilisation de **JavaFX + FXML**
-- l'implémentation et l'étude d'algorithmes de graphes
-
----
-
-## 🧩 Fonctionnalités principales
-
-- ✅ Création dynamique d'un graphe (jusqu'à 50 sommets)
-- ✅ Ajout et suppression de sommets / arêtes
-- ✅ Visualisation graphique sur un canevas
-- ✅ Coloration des sommets avec mise à jour visuelle
-- ✅ Effacement des couleurs sans modifier la structure
-- ✅ Messages d'erreur et alertes utilisateur
-
----
-
-## 🧮 Algorithmes de coloration implémentés
-
-- **2-Coloration**  
-  Pour les graphes bipartis
-
-- **Algorithme Glouton**  
-  Coloration selon l'ordre naturel des sommets
-
-- **Welsh–Powell**  
-  Coloration gloutonne avec tri décroissant des degrés
-
-- **Wigderson**  
-  Algorithme destiné aux graphes 3-coloriables  
-  (avec détection si le graphe n'est pas 3-coloriable)
-
----
-
-## 🏗️ Architecture du projet
-
-Le projet suit une architecture **claire et modulaire**, inspirée du modèle MVC :
-
-```
-src/main/java
-└── up.mi.projet
-    ├── algo (algorithmes de coloration)
-    ├── model (Graphe, Sommet, Etiquetage, Couleur, exceptions)
-    └── gui
-        ├── Launcher (point d'entrée JVM)
-        ├── Main (classe JavaFX principale)
-        └── MainController (contrôleur FXML)
-
-src/main/resources
-└── up.mi.projet.gui
-    └── MainView.fxml
-```
-
----
-
-## 🖥️ Interface graphique
-
-- Développée avec **JavaFX**
-- Mise en page via **FXML**
-- Logique traitée dans un **Controller dédié**
-- Dessin du graphe via `Canvas` et `GraphicsContext`
-- Positionnement automatique des sommets avec un algorithme de forces de répulsion
-
----
-
-## 🚀 Lancement du projet
-
+## 🚀 Démarrage rapide
 ### Prérequis
-- Java **17**
-- Maven
-- JavaFX (géré via Maven)
+- JDK 17
+- Maven (gère JavaFX via le plugin)
 
-### Lancement avec IntelliJ IDEA
-1. Ouvrir le projet comme **projet Maven**
-2. Attendre la résolution des dépendances
-3. Lancer la classe :
-   ```java
-   up.mi.projet.gui.Launcher
-   ```
-   ou via le bouton ▶️
+### Lancer l'application
+- IDE : exécuter `up.mi.projet.gui.Launcher`.
+- Maven CLI :
+  ```bash
+  mvn javafx:run
+  ```
 
-### Lancement via Maven
+### Exécuter les tests
 ```bash
-mvn javafx:run
+mvn test
 ```
 
----
+## 🧩 Fonctionnalités
+- Création dynamique d’un graphe jusqu’à 50 sommets.
+- Ajout d’arêtes via spinners de sélection.
+- Visualisation sur canevas avec disposition circulaire + répulsion pour éviter les chevauchements.
+- Coloration interactive avec rafraîchissement instantané.
+- Effacement des couleurs sans toucher à la structure.
+- Alertes claires (erreurs, avertissements, à propos).
 
-## 🛠️ Technologies utilisées
+## 🧮 Algorithmes disponibles
+- **2-Coloration** (biparti).
+- **Glouton** (ordre naturel).
+- **Welsh–Powell** (ordre décroissant des degrés).
+- **Wigderson** (graphes 3-coloriables, alerte si non coloriable).
 
-- Java 17
-- JavaFX
-- FXML
-- Maven
-- IntelliJ IDEA
+## 🖥️ Interface & style
+- Mise en page en FXML (`MainView.fxml`) et contrôleur dédié (`MainController`).
+- Canvas pour le dessin des sommets/arêtes (couleurs mappées depuis l’énumération métier).
+- Thème moderne appliqué via `style.css` (dégradé sombre, cartes latérales, boutons différenciés).
 
----
+## 🏗️ Organisation du code
+```
+src/main/java/up/mi/projet
+├── AlgorithmesUtilitaires.java
+├── Couleur.java
+├── Etiquetage.java
+├── Graphe.java
+├── NonBipartiException.java
+├── Sommet.java
+├── TailleInsuffisanteException.java
+├── TestGraphe.java
+└── gui
+    ├── Launcher.java          (point d’entrée JVM)
+    ├── Main.java              (initialisation JavaFX + CSS)
+    └── MainController.java    (logique UI)
+
+src/main/resources/up/mi/projet/gui
+├── MainView.fxml
+└── style.css
+
+src/test/java/up/mi/projet
+└── AlgorithmesUtilitairesTest.java
+```
+
+## 🧭 Guide d’utilisation rapide
+1. Ajouter des sommets (`Ajouter un Sommet`).
+2. Ajouter des arêtes en sélectionnant les indices dans les spinners, puis `Ajouter`.
+3. Choisir un algorithme dans la liste et cliquer sur `Exécuter`.
+4. Utiliser `Effacer les couleurs` pour tester un autre algorithme sans reconstruire le graphe.
+5. Menu `Fichier > Nouveau Graphe` pour repartir de zéro.
 
 ## 🎯 Objectifs pédagogiques
+- Manipuler des structures de graphes et leurs colorations.
+- Comparer des algorithmes classiques.
+- Illustrer une séparation nette UI / métier avec JavaFX + FXML.
 
-- Manipuler des structures de graphes
-- Implémenter et comparer des algorithmes de coloration
-- Concevoir une application JavaFX structurée
-- Appliquer les principes de la programmation orientée objet
-- Séparer interface graphique et logique métier
-
----
-
-## ✅ État du projet
-
-- ✅ Application fonctionnelle
-- ✅ Interface graphique stable
-- ✅ Algorithmes implémentés
-- ✅ Architecture propre et maintenable
-
----
-
-## ℹ️ Remarque
-
-Ce projet a été réalisé dans un cadre pédagogique, dans le but d'illustrer les concepts étudiés en Programmation Avancée & Applications.
+## 👤 Auteur
+Abderahmane Nazim HAMIA — L3 Informatique (Programmation Avancée & Applications).

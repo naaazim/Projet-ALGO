@@ -167,9 +167,7 @@ class AlgorithmesUtilitairesTest {
         // Wigderson peut produire une coloration valide ou invalide selon le graphe
         // On vérifie juste qu'il ne lève pas d'exception
         assertDoesNotThrow(() -> {
-            Etiquetage e = AlgorithmesUtilitaires.wigderson(g);
-            // Si la coloration est valide, c'est bien
-            // Si elle est invalide, c'est normal pour Wigderson sur certains graphes
+            AlgorithmesUtilitaires.wigderson(g);
         }, "Wigderson ne doit pas lever d'exception");
     }
 
